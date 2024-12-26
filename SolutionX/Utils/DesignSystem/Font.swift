@@ -7,6 +7,7 @@
 
 import UIKit
 
+// TWO ways to create Font system
 protocol DynamicFont {
     func size(_ size: CGFloat) -> UIFont
 }
@@ -27,3 +28,8 @@ enum Font: String, DynamicFont {
     case bold = "Bold"
 }
 
+extension Font {
+    func fontSize(_ size: CGFloat) -> UIFont {
+        return UIFont(name: self.rawValue, size: 16) ?? .boldSystemFont(ofSize: size)
+    }
+}
