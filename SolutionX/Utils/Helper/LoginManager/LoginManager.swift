@@ -24,6 +24,20 @@ class LoginManager {
         }
     }
 
+    func loginWithPhone(phone: String, password: String, completion: @escaping (Result<User, LoginError>) -> Void) {
+        DispatchQueue.global().asyncAfter(deadline: .now() + 1.0) {
+            if let user = self.users.first(where: { $0.phone == phone && $0.password == password }) {
+                if !user.isActive {
+                    completion(.failure(.userInactive))
+                } else {
+                    completion(.success(user))
+                }
+            } else {
+                completion(.failure(.invalidCredentials))
+            }
+        }
+    }
+    
     func loginWithEmail(email: String, password: String, completion: @escaping (Result<User, LoginError>) -> Void) {
         DispatchQueue.global().asyncAfter(deadline: .now() + 1.0) {
             if let user = self.users.first(where: { $0.email == email && $0.password == password }) {
