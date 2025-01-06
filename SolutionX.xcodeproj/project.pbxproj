@@ -26,6 +26,10 @@
 		22704DFA2D2150E400171E01 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22704DF72D2150E400171E01 /* Author.swift */; };
 		22704DFC2D2150F800171E01 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22704DFB2D2150F800171E01 /* Book.swift */; };
 		22704DFE2D21510E00171E01 /* BookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22704DFD2D21510E00171E01 /* BookManager.swift */; };
+		229BA9EE2D2BDA6800F35002 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BA9E92D2BDA6800F35002 /* LoginError.swift */; };
+		229BA9EF2D2BDA6800F35002 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BA9EA2D2BDA6800F35002 /* LoginManager.swift */; };
+		229BA9F02D2BDA6800F35002 /* MockUserDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BA9EB2D2BDA6800F35002 /* MockUserDatabase.swift */; };
+		229BA9F12D2BDA6800F35002 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229BA9EC2D2BDA6800F35002 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +73,10 @@
 		22981C072D1D603A003ABC14 /* SolutionX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SolutionX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22981C1D2D1D603D003ABC14 /* SolutionXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolutionXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22981C272D1D603D003ABC14 /* SolutionXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolutionXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		229BA9E92D2BDA6800F35002 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
+		229BA9EA2D2BDA6800F35002 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		229BA9EB2D2BDA6800F35002 /* MockUserDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDatabase.swift; sourceTree = "<group>"; };
+		229BA9EC2D2BDA6800F35002 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +260,7 @@
 		22704DF92D2150E400171E01 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				229BA9ED2D2BDA6800F35002 /* LoginManager */,
 				22704DF82D2150E400171E01 /* BookManager */,
 			);
 			path = Helper;
@@ -275,6 +284,17 @@
 				22981C272D1D603D003ABC14 /* SolutionXUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		229BA9ED2D2BDA6800F35002 /* LoginManager */ = {
+			isa = PBXGroup;
+			children = (
+				229BA9E92D2BDA6800F35002 /* LoginError.swift */,
+				229BA9EA2D2BDA6800F35002 /* LoginManager.swift */,
+				229BA9EB2D2BDA6800F35002 /* MockUserDatabase.swift */,
+				229BA9EC2D2BDA6800F35002 /* User.swift */,
+			);
+			path = LoginManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,6 +447,10 @@
 				22704DFC2D2150F800171E01 /* Book.swift in Sources */,
 				22704DE82D2130B300171E01 /* ThemeVC.swift in Sources */,
 				22704DE92D2130B300171E01 /* Font.swift in Sources */,
+				229BA9EE2D2BDA6800F35002 /* LoginError.swift in Sources */,
+				229BA9EF2D2BDA6800F35002 /* LoginManager.swift in Sources */,
+				229BA9F02D2BDA6800F35002 /* MockUserDatabase.swift in Sources */,
+				229BA9F12D2BDA6800F35002 /* User.swift in Sources */,
 				22704DEA2D2130B300171E01 /* Icons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
