@@ -93,17 +93,17 @@ NOTE: - Thread that is used by async call is not blocked
 ### await - Sequential Execution
 When you use await, each asynchronous function waits for the previous one to finish before proceeding.
 
-  func fetchUser() async throws -> User { /* API Call */ }
-  func fetchPosts(for userId: Int) async throws -> [Post] { /* API Call */ }
-  func fetchComments(for postId: Int) async throws -> [Comment] { /* API Call */ }
-  
-  Task {
-      do {
-          let user = try await fetchUser() // Waits for user to be fetched
-          let posts = try await fetchPosts(for: user.id) // Waits for posts after user
-          let comments = try await fetchComments(for: posts.first!.id) // Waits for comments after posts
+          func fetchUser() async throws -> User { /* API Call */ }
+          func fetchPosts(for userId: Int) async throws -> [Post] { /* API Call */ }
+          func fetchComments(for postId: Int) async throws -> [Comment] { /* API Call */ }
           
-          print("User: \(user), Posts: \(posts), Comments: \(comments)")
+          Task {
+              do {
+                  let user = try await fetchUser() // Waits for user to be fetched
+                  let posts = try await fetchPosts(for: user.id) // Waits for posts after user
+                  let comments = try await fetchComments(for: posts.first!.id) // Waits for comments after posts
+          
+        print("User: \(user), Posts: \(posts), Comments: \(comments)")
       } catch {
           print("Error: \(error)")
       }
@@ -113,11 +113,11 @@ When you use await, each asynchronous function waits for the previous one to fin
 async let allows multiple asynchronous tasks to start at the same time and await their results later, improving performance.
 
 
-  Task {
-      do {
-          async let user = fetchUser() // Starts fetching user
-          async let posts = fetchPosts(for: await user.id) // Starts fetching posts as soon as user is available
-          async let comments = fetchComments(for: await posts.first!.id) // Starts fetching comments as soon as posts are available
+          Task {
+              do {
+                  async let user = fetchUser() // Starts fetching user
+                  async let posts = fetchPosts(for: await user.id) // Starts fetching posts as soon as user is available
+                  async let comments = fetchComments(for: await posts.first!.id) // Starts fetching comments as soon as posts are available
   
           // Wait for all tasks to complete
           let (fetchedUser, fetchedPosts, fetchedComments) = try await (user, posts, comments)
@@ -126,7 +126,7 @@ async let allows multiple asynchronous tasks to start at the same time and await
       } catch {
           print("Error: \(error)")
       }
-  }
+    }
 
 ### Task and TaskGroup
 
@@ -157,27 +157,27 @@ Regular Task (Unstructured Concurrency)
               print("Received: \(result)")
           }
       }
-  }
+    }
 
 ### Task Cancellation
 
-  let task = Task {
-      for i in 1...10 {
-          if Task.isCancelled {
-              print("Task was cancelled. Exiting...")
-              return
+          let task = Task {
+              for i in 1...10 {
+                  if Task.isCancelled {
+                      print("Task was cancelled. Exiting...")
+                      return
+                  }
+                  print("Processing item \(i)")
+                  try? await Task.sleep(nanoseconds: 500_000_000) // Simulate work (0.5s)
+              }
+              print("Task completed successfully")
           }
-          print("Processing item \(i)")
-          try? await Task.sleep(nanoseconds: 500_000_000) // Simulate work (0.5s)
-      }
-      print("Task completed successfully")
-  }
-  
-  // Cancel after 1 second
-  Task {
-      try? await Task.sleep(nanoseconds: 1_000_000_000) // 1s delay
-      task.cancel() // Cancels the running task
-  }
+          
+          // Cancel after 1 second
+          Task {
+              try? await Task.sleep(nanoseconds: 1_000_000_000) // 1s delay
+              task.cancel() // Cancels the running task
+          }
 
 
 ### Actors 
@@ -189,14 +189,14 @@ In a multi-threaded environment, a shared mutable state can cause race condition
 - Serial Queues → Adds complexity to code.
 - Actors solve this by ensuring only one task accesses a mutable state at a time.
 
-  actor BankAccount {
-      private var balance: Int = 0
+          actor BankAccount {
+              private var balance: Int = 0
   
-      func deposit(amount: Int) {
-          balance += amount
-      }
-  
-      func getBalance() -> Int {
-          return balance
-      }
-  }
+              func deposit(amount: Int) {
+                  balance += amount
+              }
+          
+              func getBalance() -> Int {
+                  return balance
+              }
+          }
