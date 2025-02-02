@@ -185,8 +185,8 @@ Regular Task (Unstructured Concurrency)
 Why Do We Need Actors?
 In a multi-threaded environment, a shared mutable state can cause race conditions and unexpected behaviors. Before Swift concurrency, we used:
 
-Locks (DispatchQueue.sync) → Can cause deadlocks.
-Serial Queues → Adds complexity to code.
+- Locks (DispatchQueue.sync) → Can cause deadlocks.
+- Serial Queues → Adds complexity to code.
 - Actors solve this by ensuring only one task accesses a mutable state at a time.
 
   actor BankAccount {
