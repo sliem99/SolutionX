@@ -1,3 +1,24 @@
+# Reactive Programming
+
+Reactive programming is a declarative paradigm focused on data streams and the propagation of change. Instead of writing code that imperatively tells the computer *how* to perform tasks step-by-step, reactive programming lets you declare *what* should happen when data changes or events occur.
+
+## Key Concepts
+
+- **Data Streams:**  
+  Every piece of data (such as user inputs, network responses, or sensor readings) is treated as a continuous stream of events. These streams can emit:
+  - **Next:** Data values
+  - **Error:** Failure events
+  - **Complete:** A signal that no further data will be emitted
+
+- **Observers and Subscriptions:**  
+  Components subscribe to these data streams to get notified whenever a new event occurs. This allows the application to react immediately to changes.
+
+- **Operators:**  
+  A rich set of functions (like `map`, `filter`, `reduce`, and `flatMap`) is provided to transform, combine, or filter data streams. This composability helps build complex asynchronous pipelines with minimal code.
+
+- **Asynchrony and Non-blocking Behavior:**  
+  Reactive programming is inherently asynchronous. Data is processed as it becomes available, which improves responsiveness and resource utilization without blocking the main execution thread.
+  # Combine 
 - **What is Combine?**  
   A reactive programming framework from Apple that simplifies asynchronous programming by using publishers to emit values over time and subscribers to react to these values.
   
@@ -86,6 +107,35 @@ let currentValueSubscription = currentValue.sink { value in
 // Update the value; subscribers will receive the new value.
 currentValue.send("Updated Value")
 ```
+
+### Key Differences Between Subjects and Publishers
+
+### 1- Emission Control
+####  **Publishers:**  
+  - Emit values based on their internal logic and configuration.
+  - You cannot manually push values into a publisher after it's created.
+####  **Subjects:**  
+  - Allow you to imperatively send values using the `send(_:)` method.
+  - Act as both a publisher and a subscriber, letting you control when values are emitted.
+
+### 2- Cold vs. Hot Behavior
+#### **Publishers:**  
+  - Typically "cold" – they don’t start emitting values until a subscriber attaches.
+#### **Subjects:**  
+  - Are "hot" – they immediately emit values when `send(_:)` is called, regardless of whether a subscriber is present.
+
+### 3- State Management
+#### **Publishers:**  
+  - Generally stateless; they produce values without retaining previous ones (unless combined with stateful operators).
+#### **Subjects:**  
+  - Can be stateful. For example, `CurrentValueSubject` retains the most recent value and immediately provides it to new subscribers, while `PassthroughSubject` does not.
+
+### 4- Usage Scenarios
+#### **Publishers:**  
+  - Best suited for modeling asynchronous operations such as network requests, timers, or file I/O.
+#### **Subjects:**  
+  - Ideal for bridging imperative event sources (like UI events or notifications) into reactive streams where you need explicit control over value emission.
+
 
 ## 3. Operators in Combine
 Operators transform, filter, combine, or otherwise manipulate the data flowing through a pipeline. Some key operators include:
